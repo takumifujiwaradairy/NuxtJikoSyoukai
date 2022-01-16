@@ -9,9 +9,19 @@
         <li><a href="">私について</a></li>
       </ul>
     </nav>
+      <my-button></my-button>
+      <button @click="changeColor">change color</button>
   </header>
-</template>
 
+</template>
+<script>
+import MyButton from "./MyButton.vue";
+export default {
+  components:{
+    MyButton
+  }
+}
+</script>
 <style scoped>
 header {
   padding: 30px 4% 10px;
