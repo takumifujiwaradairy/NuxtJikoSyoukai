@@ -1,3 +1,3 @@
 <template>
-  <h1>oooooo</h1>
+  <h1>簡単なCRUDアプリの作成をします！</h1>
 </template>
