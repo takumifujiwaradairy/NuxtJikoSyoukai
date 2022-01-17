@@ -1,4 +1,4 @@
-# JikoSyoukai
+# jikoshoukai
 
 ## Build Setup
 
