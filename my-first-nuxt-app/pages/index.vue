@@ -1,63 +1,65 @@
 <template>
-  <section class="container">
-    <h1>Todo App</h1>
-    <p><input type="text" name="content" v-model="content"  @focus="set_flg"/></p>
-    <div>
-      <button @click="insert">save</button>
-      <button @click="find">find</button>
-    </div>
-    <ul>
-      <li v-for="(todo, index) in display_todos" :key="index">
-        <span>{{ todo.content }}</span><span>({{ todo.created }})</span><span @click="remove(todo)">×</span>
-      </li>
-    </ul>
-  </section>
+<section class="container">
+  <h1>基本的なCRUDアプリの作成</h1>
+  <p><input type="text" name="content" v-model="content" @focus="set_flg"/></p>
+  <div>
+    <button @click="insert">save</button> 
+    <button @click="find">find</button> 
+  </div>
+  <ul>
+    <li v-for="(todo, index) in display_todos" :key= "index">
+      <span>{{ todo.content }}</span>
+      <span>{{ todo.created }}</span>
+      <span @click="remove(todo)"> ☓ </span>
+    </li>
+  </ul>
+</section>
 </template>
 
 <script>
 import {mapState} from 'vuex';
 
 export default {
-  data: function() {
-    return {
+  data: function(){
+    return{
       content: '',
       find_flg: false
     }
   },
-  computed: {
+  computed:{
     ...mapState(['todos']),
-    display_todos: function() {
-      if(this.find_flg) {
+    display_todos:  function(){
+      if(this.find_flg){
         var arr = [];
         var data = this.todos;
-        data.forEach(element => {
-          if(element.content.toLowerCase() == this.content.toLowerCase()) {
+        data.forEach(element =>{
+          if(element.content.toLowerCase() == this.content.toLowerCase()){
             arr.push(element);
           }
         });
         return arr;
-      } else {
+      }else{
         return this.todos;
       }
     }
   },
-  methods: {
-    insert: function() {
-      this.$store.commit('insert', {content: this.content});
+  methods:{
+    insert: function(){
+      this.$store.commit('insert',{content: this.content});
       this.content = '';
     },
-    find: function() {
+    find: function(){
       this.find_flg = true;
     },
-    set_flg: function() {
-      if(this.find_flg) {
+    set_flg: function(){
+      if(this.find_flg){
         this.find_flg = false;
         this.content = '';
       }
     },
-    remove: function(todo) {
-      this.$store.commit('remove', todo)
+    remove: function(todo){
+      this.$store.commit('remove',todo)
     }
-  }
+  } 
 }
 </script>
